@@ -3,6 +3,8 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.opt.termguicolors = true
+
 -- Indentation
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -13,6 +15,7 @@ vim.opt.number = true
 -- Centered search navigation
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Disable diagnostics
 vim.diagnostic.enable(false)
@@ -44,13 +47,11 @@ require("lazy").setup({
 		},
 	},
 	{
-		"slugbyte/lackluster.nvim",
+		dir = "devOpifex/veem",
 		lazy = false,
 		priority = 1000,
-		init = function()
-			-- vim.cmd.colorscheme("lackluster")
-			vim.cmd.colorscheme("lackluster-hack") -- my favorite
-			-- vim.cmd.colorscheme("lackluster-mint")
+		config = function()
+			vim.cmd.colorscheme("veem")
 		end,
 	},
 	{
