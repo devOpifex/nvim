@@ -47,7 +47,7 @@ require("lazy").setup({
 		},
 	},
 	{
-		dir = "devOpifex/veem",
+		"devOpifex/veem",
 		lazy = false,
 		priority = 1000,
 		config = function()
