@@ -110,14 +110,14 @@ require("lazy").setup({
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "mason.nvim" },
 		opts = {
-			ensure_installed = { "clangd", "gopls", "ts_ls" },
+			ensure_installed = { "gopls", "ts_ls" },
 		},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "mason.nvim" },
 		opts = {
-			ensure_installed = { "eslint_d", "clang-format", "prettier" },
+			ensure_installed = { "eslint_d", "prettier" },
 		},
 	},
 
@@ -128,7 +128,6 @@ require("lazy").setup({
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			vim.lsp.config("clangd", { capabilities = capabilities })
 			vim.lsp.config("gopls", { capabilities = capabilities })
 			vim.lsp.config("ts_ls", { capabilities = capabilities })
 
@@ -154,7 +153,7 @@ require("lazy").setup({
 				end,
 			})
 
-			vim.lsp.enable({ "clangd", "gopls", "ts_ls", "r_language_server", "air" })
+			vim.lsp.enable({ "gopls", "ts_ls", "r_language_server", "air" })
 		end,
 	},
 
@@ -199,13 +198,12 @@ require("lazy").setup({
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				c = { "clang-format" },
 				javascript = { "eslint_d" },
 				css = { "prettier" },
 			},
 			format_on_save = {
 				timeout_ms = 2000,
-				lsp_fallback = true,
+				lsp_fallback = false,
 			},
 		},
 	},
