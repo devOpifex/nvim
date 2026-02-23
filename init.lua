@@ -10,8 +10,13 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.softtabstop = 2
+
+-- Disable line wrapping
+vim.opt.wrap = false
+
 -- Line numbers
 vim.opt.number = true
+
 -- Centered search navigation
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
