@@ -63,6 +63,16 @@ require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		version = "*",
 		config = function()
+			require("telescope").setup({
+				defaults = {
+					layout_config = {
+						prompt_position = "top",
+					},
+					sorting_strategy = "ascending",
+				},
+			})
+			require("telescope").load_extension("fzf")
+
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
 			vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Telescope live grep" })
