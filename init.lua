@@ -5,6 +5,10 @@ vim.g.maplocalleader = " "
 
 vim.opt.termguicolors = true
 
+-- tabs
+vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+
 -- Indentation
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
