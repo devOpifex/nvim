@@ -5,6 +5,9 @@ vim.g.maplocalleader = " "
 
 vim.opt.termguicolors = true
 
+-- close buffer
+vim.keymap.set("n", "<leader>x", "<cmd>bdelete<cr>", { desc = "Close buffer" })
+
 -- tabs
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
@@ -136,7 +139,7 @@ require("lazy").setup({
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "mason.nvim" },
 		opts = {
-			ensure_installed = { "eslint_d", "prettier" },
+			ensure_installed = { "eslint_d", "prettier", "goimports" },
 		},
 	},
 
@@ -169,6 +172,15 @@ require("lazy").setup({
 							vim.lsp.buf.format({ timeout_ms = 3000 })
 						end,
 					})
+				end,
+			})
+
+			-- LSP keymaps (only active when LSP is attached)
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local opts = { buffer = args.buf }
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 				end,
 			})
 
@@ -207,6 +219,7 @@ require("lazy").setup({
 			sources = {
 				default = { "lsp", "path", "buffer" },
 			},
+			signature = { enabled = true },
 		},
 	},
 
@@ -219,6 +232,7 @@ require("lazy").setup({
 				lua = { "stylua" },
 				javascript = { "eslint_d" },
 				css = { "prettier" },
+				go = { "goimports" },
 			},
 			format_on_save = {
 				timeout_ms = 2000,
